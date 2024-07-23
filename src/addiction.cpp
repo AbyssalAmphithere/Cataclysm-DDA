@@ -94,7 +94,7 @@ static bool alcohol_diazepam_add( Character &u, int in, bool is_alcohol )
             ( u.in_sleep_state() ? "addict_diazepam_mild_asleep" : "addict_diazepam_mild_awake" );
         u.add_msg_if_player( m_warning,
                              SNIPPET.random_from_category( msg_1 ).value_or( translation() ).translated() );
-        u.add_morale( morale_type, -35, -10 * in );
+        u.add_morale( morale_type, -30, -8 * in );
         ret = true;
         if( u.in_sleep_state() ) {
             if( is_alcohol ) {
@@ -103,7 +103,7 @@ static bool alcohol_diazepam_add( Character &u, int in, bool is_alcohol )
                 last_dia_dream = calendar::turn;
             }
         }
-    } else if( rng( 8, 300 ) < in && ( !u.in_sleep_state() || !recent_dream ) ) {
+    } else if( rng( 8, 250 ) < in && ( !u.in_sleep_state() || !recent_dream ) ) {
         const std::string msg_2 =
             is_alcohol ?
             ( u.in_sleep_state() ? "addict_alcohol_strong_asleep" : "addict_alcohol_strong_awake" ) :
@@ -120,8 +120,14 @@ static bool alcohol_diazepam_add( Character &u, int in, bool is_alcohol )
                 last_dia_dream = calendar::turn;
             }
         }
-    } else if( !u.has_effect( effect_hallu ) && rng( 10, 1600 ) < in ) {
-        u.add_effect( effect_hallu, 6_hours );
+    } else if( !u.has_effect( effect_hallu ) && rng( 10, 1650 ) < in ) {
+        u.add_effect( effect_hallu, 5_hours );
+        ret = true;
+    } else if( !u.has_effect( effect_hallu ) && rng( 15, 1500 ) < in ) {
+        u.add_effect( effect_hallu, 5_hours );
+        if( !u.has_effect( effect_shakes )) {
+            u.add_effect( effect_shakes, 7_minutes );
+        }
         ret = true;
     }
     return ret;
