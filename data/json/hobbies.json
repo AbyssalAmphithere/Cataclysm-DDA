@@ -115,11 +115,21 @@
   {
     "type": "profession",
     "subtype": "hobby",
+    "id": "alcoholic_mild",
+    "name": "Functional Alcoholic",
+    "description": "Sure, it's a rare time that you're seen away from booze, but you don't have a *problem*. Right?",
+    "points": -1,
+    "traits": [ "DISORGANIZED" ],
+    "addictions": [ { "intensity": 10, "type": "alcohol" } ]
+  },
+  {
+    "type": "profession",
+    "subtype": "hobby",
     "id": "alcoholic",
     "name": "Alcohol Dependence",
     "description": "One drink became two, two became too many, and before long you were only able to find solace at the bottom of a bottle.  God-damn, you need a drink.",
     "points": -2,
-    "traits": [ "DISORGANIZED" ],
+    "traits": [ "DISORGANIZED", "INSOMNIA" ],
     "addictions": [ { "intensity": 20, "type": "alcohol" } ]
   },
   {
